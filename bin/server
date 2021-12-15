@@ -1,0 +1,5 @@
+#!/usr/bin/env node
+
+'use strict';
+
+process.title = 'etcpack-server';

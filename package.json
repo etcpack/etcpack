@@ -1,0 +1,30 @@
+{
+  "name": "etcpack",
+  "version": "0.1.0-alpha.0",
+  "description": "为前端开发设计的轻量级打包工具。",
+  "main": "index.js",
+  "bin": {
+    "pack_pkg": "bin/builder",
+    "pack_dev": "bin/server"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/etcpack/etcpack.git"
+  },
+  "keywords": [
+    "vite",
+    "webpack",
+    "@nefbl/pack",
+    "rollup"
+  ],
+  "author": "你好2007",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/etcpack/etcpack/issues"
+  },
+  "homepage": "https://github.com/etcpack/etcpack#readme",
+  "dependencies": {
+    "@hai2007/nodejs": "^2.1.0",
+    "@hai2007/tool": "^1.0.0"
+  }
+}
