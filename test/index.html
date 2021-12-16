@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="shortcut icon" href="./logo.png">
+    <title>test</title>
+    <script>
+
+        const ws = new WebSocket('ws://localhost:20001/refresh-page');
+
+        // 连接成功
+        ws.addEventListener('open', function (event) {
+            ws.send('服务器，你好呀！');
+        });
+
+        // 监听来自服务器的数据
+        ws.addEventListener('message', function (event) {
+
+            // window.location.reload();
+
+        });
+
+    </script>
+
+</head>
+
+<body>
+
+    <div id="root"></div>
+
+    <script>
+
+        var host = window.location.host;
+
+        // 获取head标签
+        var head = document.getElementsByTagName('head')[0];
+
+        // 创建script
+        var script = document.createElement('script');
+
+        // 设置属性
+        script.src = "./build/main@v0.1.0.js";
+
+        if (/^127\.0\.0\.1/.test(host) || /^localhost/.test(host)) {
+            script.type = 'module';
+        }
+
+        // 追加到页面
+        head.appendChild(script);
+
+    </script>
+
+</body>
+
+</html>

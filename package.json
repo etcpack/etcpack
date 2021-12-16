@@ -4,8 +4,8 @@
   "description": "为前端开发设计的轻量级打包工具。",
   "main": "index.js",
   "bin": {
-    "pack_pkg": "bin/builder",
-    "pack_dev": "bin/server"
+    "etcpack_pkg": "bin/builder",
+    "etcpack_dev": "bin/server"
   },
   "repository": {
     "type": "git",
@@ -15,7 +15,8 @@
     "vite",
     "webpack",
     "@nefbl/pack",
-    "rollup"
+    "rollup",
+    "etcpack"
   ],
   "author": "你好2007",
   "license": "MIT",
@@ -25,6 +26,7 @@
   "homepage": "https://ectpack.github.io/api",
   "dependencies": {
     "@etcpack/ws": "^0.1.0",
+    "@hai2007/algorithm": "^0.7.3",
     "@hai2007/nodejs": "^2.1.0",
     "@hai2007/tool": "^1.0.0"
   }
