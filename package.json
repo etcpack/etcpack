@@ -24,6 +24,7 @@
   },
   "homepage": "https://github.com/etcpack/etcpack#readme",
   "dependencies": {
+    "@etcpack/ws": "^0.1.0",
     "@hai2007/nodejs": "^2.1.0",
     "@hai2007/tool": "^1.0.0"
   }

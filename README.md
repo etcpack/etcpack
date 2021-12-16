@@ -1,5 +1,4 @@
-# etcpack
-为前端开发设计的轻量级打包工具。
+# etcpack | 前端打包工具
 
 ## Issues
 使用的时候遇到任何问题或有好的建议，请点击进入[issue](https://github.com/etcpack/etcpack/issues)！
