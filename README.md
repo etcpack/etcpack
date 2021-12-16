@@ -1,3 +1,9 @@
+<p align='center'>
+    <a href='https://ectpack.github.io/api' target='_blank'>
+        <img src='./logo.png'>
+    </a>
+</p>
+
 # etcpack | 前端打包工具
 
 ## Issues

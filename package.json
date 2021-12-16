@@ -22,7 +22,7 @@
   "bugs": {
     "url": "https://github.com/etcpack/etcpack/issues"
   },
-  "homepage": "https://github.com/etcpack/etcpack#readme",
+  "homepage": "https://ectpack.github.io/api",
   "dependencies": {
     "@etcpack/ws": "^0.1.0",
     "@hai2007/nodejs": "^2.1.0",
