@@ -8,5 +8,6 @@
     "debug": "echo 'chrome://inspect/#devices' && node --inspect-brk ../bin/builder --config etcpack.prod.js"
   },
   "dependencies": {
+    "@hai2007/algorithm": "^0.7.3"
   }
 }

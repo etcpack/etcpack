@@ -8,19 +8,24 @@
     <title>test</title>
     <script>
 
-        const ws = new WebSocket('ws://localhost:20001/refresh-page');
+        // const ws = new WebSocket('ws://localhost:20001/refresh-page');
 
-        // 连接成功
-        ws.addEventListener('open', function (event) {
-            ws.send('服务器，你好呀！');
-        });
+        // var flag = false;
 
-        // 监听来自服务器的数据
-        ws.addEventListener('message', function (event) {
+        // // 连接成功
+        // ws.addEventListener('open', function (event) {
+        //     ws.send('服务器，你好呀！');
+        // });
 
-            // window.location.reload();
+        // // 监听来自服务器的数据
+        // ws.addEventListener('message', function (event) {
+        //     if (flag) {
+        //         window.location.reload();
+        //     } else {
+        //         flag = true;
+        //     }
+        // });
 
-        });
 
     </script>
 
