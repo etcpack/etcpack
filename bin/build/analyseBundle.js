@@ -56,8 +56,6 @@ module.exports = function analyseBundle(filepath, config) {
     while (importStatement = /(?:^|\n) *import[^'"]*(['|"]).+\1;*/.exec(source)) {
         importStatement = importStatement[0].replace(/^\n/, '').trim();
 
-        nodejs.log(importStatement)
-
         // 获取导入语句的信息
         let importResult = analyseImport(importStatement.replace(/;$/, ''), filecontext, config);
 
