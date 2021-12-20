@@ -14,6 +14,9 @@ module.exports = function (_process) {
 
     config.context = process.cwd();
 
+    // 地址重定向
+    config.redirect = config.redirect || {};
+
     // 缺省后缀
     config.suffix = config.suffix || ['.js', '.ts', '.json'];
 

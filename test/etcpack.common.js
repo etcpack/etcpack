@@ -9,9 +9,9 @@ module.exports = {
     output: 'build/main@v' + pkg.version + '.js',
 
     // 对导入路径重定向
-    redirect: {
+    // redirect: {
 
-    },
+    // },
 
     // suffix:['.ts','.js','.json']
 

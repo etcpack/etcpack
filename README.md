@@ -1,5 +1,5 @@
 <p align='center'>
-    <a href='https://ectpack.github.io/api' target='_blank'>
+    <a href='https://etcpack.github.io/api' target='_blank'>
         <img src='./logo.png'>
     </a>
 </p>
@@ -15,6 +15,10 @@
 
 ## Issues
 使用的时候遇到任何问题或有好的建议，请点击进入[issue](https://github.com/etcpack/etcpack/issues)！
+
+## How to use?
+
+具体的使用你可以[查阅文档](https://etcpack.github.io/api)哦~
 
 ## How to debug?
 
