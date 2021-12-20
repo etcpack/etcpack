@@ -30,6 +30,9 @@ WS({
     // 拦截处理
     handler: function (request, response) {
 
+        let urls = request.url.split('?');
+        request.url = urls.shift();
+
         let filepath;
 
         // 如果是导入node_modules的
@@ -68,7 +71,7 @@ WS({
 
         }
 
-        let content = useLoader(filepath, config);
+        let content = useLoader(filepath, config, urls);
 
         // 如果是来自node_modules的普通文件
         if (/\/@modules/.test(request.url) && content === null) {

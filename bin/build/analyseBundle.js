@@ -11,6 +11,9 @@ let lazyBundleIndex = 0;
 
 module.exports = function analyseBundle(filepath, config) {
 
+    let urls = filepath.split('?');
+    let _filepath = urls.shift();
+
     let bundleCode = "";
     let lazyBundle = [];
 
@@ -39,10 +42,10 @@ module.exports = function analyseBundle(filepath, config) {
     nodejs.print("    * [" + urlToIndex(filepath) + "] " + filepath);
 
     // 获取当前路径上下文
-    let filecontext = nodejs.fullPath('../', filepath);
+    let filecontext = nodejs.fullPath('../', _filepath);
 
     // 读取具体代码
-    let source = (useLoader(filepath, config) || readFileSync(filepath, config.suffix)) + "\n  ";
+    let source = (useLoader(_filepath, config, urls) || readFileSync(_filepath, config.suffix)) + "\n  ";
 
     //【警告】
     // 对class转义后的代码进行特殊兼容
@@ -52,6 +55,8 @@ module.exports = function analyseBundle(filepath, config) {
     let importStatement = null;
     while (importStatement = /(?:^|\n) *import[^'"]*(['|"]).+\1;*/.exec(source)) {
         importStatement = importStatement[0].replace(/^\n/, '').trim();
+
+        nodejs.log(importStatement)
 
         // 获取导入语句的信息
         let importResult = analyseImport(importStatement.replace(/;$/, ''), filecontext, config);

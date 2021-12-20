@@ -16,12 +16,19 @@ module.exports = {
 
     // suffix:['.ts','.js','.json']
 
-    // loader: [{
-    //     test: /\.(js|ts)$/,
-    //     handler: [function (source) {
-    //         return source;
-    //     }]
-    // }],
+    loader: [{
+        test: /\.myfile$/,
+        handler: [function (source) {
+            console.log(this.filepath)
+            return source;
+        }]
+    },{
+        test: /\.myfile\?xxxxxx$/,
+        handler: [function (source) {
+            console.log(this.filepath)
+            return source+"/*---*/";
+        }]
+    }],
 
     plug: [new PlugDemo()]
 };

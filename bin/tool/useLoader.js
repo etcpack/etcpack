@@ -1,13 +1,15 @@
 const fs = require('fs');
 const getFilePath = require('./getFilePath');
 
-module.exports = function (filepath, config) {
+module.exports = function (filepath, config, urls) {
 
     let content = null;
     filepath = getFilePath(filepath, config.suffix);
 
+    let _filepath = filepath + (urls.length > 0 ? ("?" + urls.join('?')) : "");
+
     for (let item of config.loader) {
-        if (item.test.test(filepath)) {
+        if (item.test.test(_filepath)) {
 
             let handlers = item.handler;
             content = fs.readFileSync(filepath, 'utf-8');
@@ -16,7 +18,7 @@ module.exports = function (filepath, config) {
                 content = handlers[index - 1].call({
 
                     // 文件路径
-                    filepath
+                    filepath: _filepath
 
                 }, content);
             }

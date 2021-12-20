@@ -24,6 +24,9 @@ module.exports = function (statement, filecontext, config) {
     // 去掉字符串两边的空白和多余符号
     url = url.trim().replace(/['"]/g, '');
 
+    let urls = url.split('?');
+    url = urls.shift();
+
     // 如果是需要重定向的
     if (url in config.redirect) {
         url = nodejs.fullPath(config.redirect[url], process.cwd());
@@ -39,5 +42,5 @@ module.exports = function (statement, filecontext, config) {
         }
     }
 
-    return { url, args, def };
+    return { url: url + (urls.length > 0 ? "?" + urls.join('?') : ""), args, def };
 };
