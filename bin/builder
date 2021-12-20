@@ -12,6 +12,8 @@ const urlToIndex = require('./build/urlToIndex');
 // 首先，获取配置文件
 let config = require('./config')(process);
 
+config.plug.run('before', config);
+
 // 需要分析的独立bundle文件
 // 除了入口文件外，比如遇到 ()=>import() 这样的懒加载语句也会扩充下面的语句
 let needAnalyseFiles = [{

@@ -17,6 +17,25 @@ module.exports = function (_process) {
     // 地址重定向
     config.redirect = config.redirect || {};
 
+    // 插件
+    config.plug = config.plug || [];
+    let _plug = {
+        before: []
+    }
+    for (let plug of config.plug) {
+        for (let hookName in _plug) {
+            if (tool.isFunction(plug[hookName])) {
+                _plug[hookName].push(plug[hookName]);
+            }
+        }
+    }
+    config.plug.run = function (hookName, _config) {
+        let hookArr = _plug[hookName];
+        for (let hookFun of hookArr) {
+            hookFun(_config);
+        }
+    };
+
     // 缺省后缀
     config.suffix = config.suffix || ['.js', '.ts', '.json'];
 

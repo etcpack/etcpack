@@ -1,4 +1,5 @@
 const pkg = JSON.parse(require('fs').readFileSync('./package.json'));
+const PlugDemo = require('./plug');
 
 module.exports = {
 
@@ -20,5 +21,7 @@ module.exports = {
     //     handler: [function (source) {
     //         return source;
     //     }]
-    // }]
+    // }],
+
+    plug: [new PlugDemo()]
 };
