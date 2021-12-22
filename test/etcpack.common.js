@@ -19,13 +19,13 @@ module.exports = {
     loader: [{
         test: /\.myfile$/,
         handler: [function (source) {
-            console.log(this.filepath)
+            // console.log(this.filepath)
             return source;
         }]
     },{
         test: /\.myfile\?xxxxxx$/,
         handler: [function (source) {
-            console.log(this.filepath)
+            // console.log(this.filepath)
             return source+"/*---*/";
         }]
     }],

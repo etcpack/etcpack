@@ -1,6 +1,6 @@
 {
   "name": "etcpack",
-  "version": "0.4.1",
+  "version": "0.5.0",
   "description": "为前端开发设计的轻量级打包工具。",
   "main": "index.js",
   "bin": {
@@ -25,7 +25,7 @@
   },
   "homepage": "https://ectpack.github.io/api",
   "dependencies": {
-    "@etcpack/ws": "^0.1.0",
+    "@etcpack/ws": "^0.2.0",
     "@hai2007/algorithm": "^0.7.3",
     "@hai2007/nodejs": "^2.1.0",
     "@hai2007/tool": "^1.0.0"
