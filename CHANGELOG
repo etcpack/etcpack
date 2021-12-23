@@ -26,3 +26,7 @@ v0.5.1:
     date:2021-12-22
     changes:
       -  修复watch超过11次错误问题
+v0.5.2:
+    date:2021-12-23
+    changes:
+      -  修复开发dev模式对导入语句前置加@module的解析错误

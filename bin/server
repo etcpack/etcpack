@@ -99,7 +99,7 @@ WS({
                 'content-type': "application/javascript;charset=utf-8",
                 'handler': "EtcPack"
             });
-            response.write(content.replace(/(import [^'"]*)(['|"])([^./].+)\2/g, '$1$2/@modules/$3$2'));
+            response.write(content.replace(/(?:^|\n) *(import [^'"]*)(['|"])([^./].+)\2/g, '$1$2/@modules/$3$2'));
             response.end();
 
         }
