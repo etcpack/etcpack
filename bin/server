@@ -41,6 +41,10 @@ WS({
             let clinetFilePath = request.url.replace(/\/@/, './');
             content = fs.readFileSync(nodejs.fullPath(clinetFilePath, __dirname), 'utf-8');
 
+            if (/static\.js/.test(clinetFilePath)) {
+                content = content.replace('__port__', config.devServer.port + 1);
+            }
+
         } else {
 
             // 如果是导入node_modules的

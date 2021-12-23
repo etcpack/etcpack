@@ -1,4 +1,4 @@
-var ws = new WebSocket('ws://localhost:20001/refresh-page');
+var ws = new WebSocket('ws://localhost:__port__/refresh-page');
 
 // 连接成功
 ws.addEventListener('open', function (event) {
