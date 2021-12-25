@@ -20,7 +20,8 @@ module.exports = function (_process) {
     // 插件
     config.plug = config.plug || [];
     let _plug = {
-        before: []
+        before: [],
+        afterLoader: []
     }
     for (let plug of config.plug) {
         for (let hookName in _plug) {
@@ -29,11 +30,12 @@ module.exports = function (_process) {
             }
         }
     }
-    config.plug.run = function (hookName, _config) {
+    config.plug.run = function (hookName, _config, _source) {
         let hookArr = _plug[hookName];
         for (let hookFun of hookArr) {
-            hookFun(_config);
+            _source = hookFun(_config, _source);
         }
+        return _source;
     };
 
     // 缺省后缀

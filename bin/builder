@@ -27,7 +27,7 @@ let needAnalyseFiles = [{
 // 记录根bundle已经解析的依赖文件
 global.__etcpack__rootBundle__ = [];
 
-// 记录已经生称的lazy包
+// 记录已经生成的lazy包
 global.__etcpack__lazyBundle__ = [];
 
 nodejs.error(`Crafted in China By hai2007, powered by EtcPack.

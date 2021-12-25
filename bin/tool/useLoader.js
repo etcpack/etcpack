@@ -26,5 +26,9 @@ module.exports = function (filepath, config, urls) {
         }
     }
 
-    return content;
+    return config.plug.run('afterLoader', config, {
+        source: content,
+        filepath,
+        params: urls.join("?")
+    }).source;
 };
