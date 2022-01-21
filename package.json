@@ -24,7 +24,7 @@
   "bugs": {
     "url": "https://github.com/etcpack/etcpack/issues"
   },
-  "homepage": "https://ectpack.github.io/api",
+  "homepage": "https://etcpack.github.io/api",
   "dependencies": {
     "@etcpack/ws": "^0.2.1",
     "@hai2007/algorithm": "^0.7.3",
