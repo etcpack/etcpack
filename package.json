@@ -1,34 +1,34 @@
 {
-  "name": "etcpack",
-  "version": "0.5.4",
-  "description": "为前端开发设计的轻量级打包工具。",
-  "main": "index.js",
-  "bin": {
-    "etcpack_pkg": "bin/builder",
-    "etcpack_dev": "bin/server"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/etcpack/etcpack.git"
-  },
-  "keywords": [
-    "vite",
-    "webpack",
-    "@nefbl/pack",
-    "rollup",
-    "etcpack",
-    "ws"
-  ],
-  "author": "你好2007",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/etcpack/etcpack/issues"
-  },
-  "homepage": "https://etcpack.github.io/api",
-  "dependencies": {
-    "@etcpack/ws": "^0.2.1",
-    "@hai2007/algorithm": "^0.7.3",
-    "@hai2007/nodejs": "^2.1.0",
-    "@hai2007/tool": "^1.0.0"
-  }
+    "name": "etcpack",
+    "version": "0.6.0",
+    "description": "为前端开发设计的轻量级打包工具。",
+    "main": "index.js",
+    "bin": {
+        "etcpack_pkg": "bin/builder",
+        "etcpack_dev": "bin/server"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/etcpack/etcpack.git"
+    },
+    "keywords": [
+        "vite",
+        "webpack",
+        "@nefbl/pack",
+        "rollup",
+        "etcpack",
+        "ws"
+    ],
+    "author": "你好2007",
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/etcpack/etcpack/issues"
+    },
+    "homepage": "https://etcpack.github.io/api",
+    "dependencies": {
+        "@etcpack/ws": "^0.2.1",
+        "@hai2007/algorithm": "^0.7.5",
+        "@hai2007/nodejs": "^3.0.0",
+        "@hai2007/tool": "^1.2.0"
+    }
 }

@@ -4,13 +4,7 @@ const tool = require('@hai2007/tool');
 const getMainUrl = require('./tool/getMainUrl');
 const fs = require('fs');
 
-module.exports = function (_process) {
-
-    // 获取命令行参数
-    const parsed = nodejs.option({}, _process.argv);
-
-    // 首先，获取配置文件
-    let config = require(nodejs.fullPath(parsed.config[0], process.cwd()));
+module.exports = function(config) {
 
     config.context = process.cwd();
 
@@ -30,7 +24,7 @@ module.exports = function (_process) {
             }
         }
     }
-    config.plug.run = function (hookName, _config, _source) {
+    config.plug.run = function(hookName, _config, _source) {
         let hookArr = _plug[hookName];
         for (let hookFun of hookArr) {
             _source = hookFun(_config, _source);
@@ -114,7 +108,7 @@ module.exports = function (_process) {
     // js
     config.loader.push({
         test: /\.js$/,
-        handler: [function (source) {
+        handler: [function(source) {
             return source;
         }]
     });

@@ -1,0 +1,73 @@
+const nodejs = require('@hai2007/nodejs');
+const analyseBundle = require('./build/analyseBundle');
+const fs = require('fs');
+const urlToIndex = require('./build/urlToIndex');
+
+module.exports = function(_config) {
+
+    // 首先，获取配置文件
+    let config = require('./config')(_config);
+
+    config.plug.run('before', config);
+
+    // 需要分析的独立bundle文件
+    // 除了入口文件外，比如遇到 ()=>import() 这样的懒加载语句也会扩充下面的语句
+    let needAnalyseFiles = [{
+        source: config.entry.file,
+        target: config.output.file,
+
+        // 标记是根bundle
+        isRoot: true
+    }];
+
+    // 记录根bundle已经解析的依赖文件
+    global.__etcpack__rootBundle__ = [];
+
+    // 记录已经生成的lazy包
+    global.__etcpack__lazyBundle__ = [];
+
+    nodejs.error(`Crafted in China By hai2007, powered by EtcPack.
+-------------------------------------------------------------------------
+( https://etcpack.github.io/api/ )
+`)
+
+    while (needAnalyseFiles.length > 0) {
+        let needAnalyseFile = needAnalyseFiles.shift();
+
+        // 记录当前bundle已经解析的依赖文件
+        global.__etcpack__currentBundle__ = [];
+
+        // 记录当前解析的是否是根bundle
+        global.__etcpack__isRootBundle__ = needAnalyseFile.isRoot;
+
+        let bundleCode = "";
+        // 如果是根bundle，需要搭载基本的方法
+        if (needAnalyseFile.isRoot) {
+            bundleCode = fs.readFileSync(nodejs.fullPath('./build/static.js', __dirname), 'utf-8');
+            bundleCode = "/******/\n" + bundleCode.replace(/^/mg, '/******/  ') + "\n/************************************************************************/\n/******/\n";
+        }
+
+        nodejs.log(`\nIndependent bundle file currently analyzed:
+    ● ${needAnalyseFile.source} → ${needAnalyseFile.target}
+`);
+
+        // 分析出当前bundle文件
+        let bundle = analyseBundle(needAnalyseFile.source, config);
+        bundleCode += bundle.code;
+        for (let lazyBundleFile of bundle.lazy) { needAnalyseFiles.push(lazyBundleFile); }
+
+        if (needAnalyseFile.isRoot) {
+
+            // 整个程序由主bundle启动
+            bundleCode += `\nwindow.__etcpack__bundleSrc__['${urlToIndex(needAnalyseFile.source)}']();`;
+        }
+
+        fs.writeFileSync(needAnalyseFile.target, bundleCode);
+
+    }
+
+    nodejs.error(`
+Package succeeded!
+`);
+
+};

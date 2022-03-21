@@ -38,3 +38,7 @@ v0.5.4
     date:2021-12-24
     changes:
       -  插件新增 ```afterLoader``` 钩子
+v0.6.0
+    date:2022-03-21
+    changes:
+      -  打包命令新增模块导出接口

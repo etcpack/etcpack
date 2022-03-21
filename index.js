@@ -1,7 +1,7 @@
 const { setValue } = require('@hai2007/algorithm');
 const { isObject } = require('@hai2007/tool');
 
-exports.merge = function (common, config) {
+exports.merge = function(common, config) {
 
     (function copyConfig(express, target) {
 
@@ -20,4 +20,12 @@ exports.merge = function (common, config) {
     })('', config);
 
     return common;
+};
+
+exports.etcpack_pkg = function(config) {
+    require('./etcpack/builder')(config);
+};
+
+exports.etcpack_dev = function(config) {
+    require('./etcpack/server')(config);
 };
