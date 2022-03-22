@@ -86,7 +86,10 @@ module.exports = function(config) {
                 // 如果不是配置的本地文件
                 if (!fs.existsSync(localFilePath) || fs.lstatSync(localFilePath).isDirectory()) {
 
-                    localFilePath = nodejs.fullPath('./node_modules/' + handler, process.cwd());
+                    // 为了解决全局安装问题
+                    // by 你好2007 2022年3月23日 南京
+                    // localFilePath = nodejs.fullPath('./node_modules/' + handler, process.cwd());
+                    localFilePath = nodejs.fullPath('../../' + handler, __dirname);
 
                     // 如果也不是node_modules中的路径
                     if (!fs.existsSync(localFilePath) || fs.lstatSync(localFilePath).isDirectory()) {

@@ -39,7 +39,12 @@ module.exports = function (statement, filecontext, config) {
         } else if (/^\//.test(url)) {
             url = getFilePath(nodejs.fullPath("." + url, config.context), config.suffix);
         } else {
-            url = nodejs.fullPath("node_modules/" + url, config.context);
+
+            // 为了解决全局安装问题
+            // by 你好2007 2022年3月23日 南京
+            // url = nodejs.fullPath("node_modules/" + url, config.context);
+            url = nodejs.fullPath("../../../" + url, __dirname);
+
             url = getFilePath(url, config.suffix) || getMainUrl(url);
         }
     }

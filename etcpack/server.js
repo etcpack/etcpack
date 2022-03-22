@@ -6,7 +6,7 @@ const useLoader = require('./tool/useLoader');
 const getMainUrl = require('./tool/getMainUrl');
 const fs = require('fs');
 
-module.exports = function(_config) {
+module.exports = function (_config) {
 
     // 首先，获取配置文件
     let config = require('./config')(_config);
@@ -25,7 +25,7 @@ module.exports = function(_config) {
         suffix: config.suffix,
 
         // 拦截处理
-        handler: function(request, response) {
+        handler: function (request, response) {
 
             let urls = request.url.split('?');
             request.url = urls.shift();
@@ -53,7 +53,11 @@ module.exports = function(_config) {
 
                     // 否则，直接去node_modules中寻找
                     else {
-                        filepath = nodejs.fullPath(request.url.replace(/\/@modules/, './node_modules'), process.cwd());
+
+                        // 为了解决全局安装问题
+                        // by 你好2007 2022年3月23日 南京
+                        // filepath = nodejs.fullPath(request.url.replace(/\/@modules/, './node_modules'), process.cwd());
+                        filepath = nodejs.fullPath(request.url.replace(/\/@modules/, '../..'), __dirname);
                     }
 
                     // 如果文件不存在，就应该使用main等关键字修改路径
