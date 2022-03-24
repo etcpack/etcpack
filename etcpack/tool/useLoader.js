@@ -14,13 +14,24 @@ module.exports = function (filepath, config, urls) {
             let handlers = item.handler;
             content = fs.readFileSync(filepath, 'utf-8');
 
-            for (let index = handlers.length; index > 0; index--) {
-                content = handlers[index - 1].call({
+            if (item.filter(_filepath)) {
 
-                    // 文件路径
-                    filepath: _filepath
+                for (let index = handlers.length; index > 0; index--) {
 
-                }, content);
+                    // 为了适配新的handler写法
+                    // by 你好2007 2022年3月24日 南京
+                    //  content = handlers[index - 1].call({
+                    content = handlers[index - 1].use.call({
+
+                        // 文件路径
+                        filepath: _filepath,
+
+                        // 配置
+                        config: handlers[index - 1].config
+
+                    }, content);
+                }
+
             }
             break;
         }

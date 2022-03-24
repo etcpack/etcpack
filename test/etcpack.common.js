@@ -22,11 +22,23 @@ module.exports = {
             // console.log(this.filepath)
             return source;
         }]
-    },{
+    }, {
         test: /\.myfile\?xxxxxx$/,
-        handler: [function (source) {
-            // console.log(this.filepath)
-            return source+"/*---*/";
+        filter(filepath) {
+            console.log(filepath);
+            return false;
+        },
+        handler: [{
+            config: {
+                key1: "value1"
+            },
+            use: function (source) {
+
+                console.log(this);
+
+                // console.log(this.filepath)
+                return source + "/*---*/";
+            }
         }]
     }],
 

@@ -4,7 +4,7 @@ const tool = require('@hai2007/tool');
 const getMainUrl = require('./tool/getMainUrl');
 const fs = require('fs');
 
-module.exports = function(config) {
+module.exports = function (config) {
 
     config.context = process.cwd();
 
@@ -24,7 +24,7 @@ module.exports = function(config) {
             }
         }
     }
-    config.plug.run = function(hookName, _config, _source) {
+    config.plug.run = function (hookName, _config, _source) {
         let hookArr = _plug[hookName];
         for (let hookFun of hookArr) {
             _source = hookFun(_config, _source);
@@ -79,9 +79,18 @@ module.exports = function(config) {
         for (let j = 0; j < config.loader[i].handler.length; j++) {
 
             let handler = config.loader[i].handler[j];
-            if (!tool.isFunction(handler)) {
 
-                let localFilePath = nodejs.fullPath(handler, process.cwd());
+            let conf = {}, use;
+            if (tool.isFunction(handler) || tool.isString(handler)) {
+                use = handler;
+            } else {
+                conf = handler.config;
+                use = handler.use;
+            }
+
+            if (!tool.isFunction(use)) {
+
+                let localFilePath = nodejs.fullPath(use, process.cwd());
 
                 // 如果不是配置的本地文件
                 if (!fs.existsSync(localFilePath) || fs.lstatSync(localFilePath).isDirectory()) {
@@ -89,7 +98,7 @@ module.exports = function(config) {
                     // 为了解决全局安装问题
                     // by 你好2007 2022年3月23日 南京
                     // localFilePath = nodejs.fullPath('./node_modules/' + handler, process.cwd());
-                    localFilePath = nodejs.fullPath('../../' + handler, __dirname);
+                    localFilePath = nodejs.fullPath('../../' + use, __dirname);
 
                     // 如果也不是node_modules中的路径
                     if (!fs.existsSync(localFilePath) || fs.lstatSync(localFilePath).isDirectory()) {
@@ -101,18 +110,36 @@ module.exports = function(config) {
 
                 }
 
-                config.loader[i].handler[j] = require(localFilePath);
+                use = require(localFilePath);
 
             }
 
+            config.loader[i].handler[j] = {
+                use,
+                config: conf
+            };
+
         }
+
+        if (!tool.isFunction(config.loader[i].filter)) {
+            config.loader[i].filter = function () {
+                return true;
+            };
+        }
+
     }
 
     // js
     config.loader.push({
         test: /\.js$/,
-        handler: [function(source) {
-            return source;
+        filter() {
+            return true;
+        },
+        handler: [{
+            use: function (source) {
+                return source;
+            },
+            config: {}
         }]
     });
 
