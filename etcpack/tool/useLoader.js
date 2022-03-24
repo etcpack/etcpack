@@ -1,3 +1,4 @@
+const tool = require('@hai2007/tool');
 const fs = require('fs');
 const getFilePath = require('./getFilePath');
 
@@ -14,7 +15,7 @@ module.exports = function (filepath, config, urls) {
             let handlers = item.handler;
             content = fs.readFileSync(filepath, 'utf-8');
 
-            if (item.filter(_filepath)) {
+            if ((!tool.isFunction(item.filter)) || item.filter(_filepath)) {
 
                 for (let index = handlers.length; index > 0; index--) {
 

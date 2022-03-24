@@ -6,6 +6,7 @@ const toInnerImport = require('./toInnerImport');
 const useLoader = require('../tool/useLoader');
 const urlToIndex = require('./urlToIndex');
 const getFilePath = require('../tool/getFilePath');
+const getMainUrl = require('../tool/getMainUrl');
 
 let lazyBundleIndex = 0;
 
@@ -86,7 +87,8 @@ module.exports = function analyseBundle(filepath, config) {
         lazyBundleIndex += 1;
 
         // 懒加载文件地址
-        let lazyFilepath = getFilePath(nodejs.fullPath(lazyStatement[2], filecontext), config.suffix) || lazyStatement[2];
+        let lazyFilepath = getFilePath(nodejs.fullPath(lazyStatement[2], filecontext), config.suffix)
+            || getMainUrl(nodejs.fullPath('../../../' + lazyStatement[2], __dirname));
 
         // 懒加载导出地址
         let lazyOutput = config.output.file.replace(/\.js$/, '-bundle' + lazyBundleIndex + '.js')

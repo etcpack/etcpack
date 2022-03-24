@@ -121,20 +121,11 @@ module.exports = function (config) {
 
         }
 
-        if (!tool.isFunction(config.loader[i].filter)) {
-            config.loader[i].filter = function () {
-                return true;
-            };
-        }
-
     }
 
     // js
     config.loader.push({
         test: /\.js$/,
-        filter() {
-            return true;
-        },
         handler: [{
             use: function (source) {
                 return source;

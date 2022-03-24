@@ -103,7 +103,15 @@ module.exports = function (_config) {
                     'content-type': "application/javascript;charset=utf-8",
                     'handler': "EtcPack"
                 });
-                response.write(content.replace(/(?:^|\n) *(import [^'"]*)(['|"])([^./].+)\2/g, '$1$2/@modules/$3$2'));
+
+                // 普通的来自node_modules导入地址校对
+                content = content.replace(/(?:^|\n) *(import [^'"]*)(['|"])([^./].+)\2/g, '$1$2/@modules/$3$2');
+
+                // 懒加载的来自node_modules导入地址校对
+                content = content.replace(/(return +import\()(['|"])([^./].+)\2/g, '$1$2/@modules/$3$2');
+
+                response.write(content);
+
                 response.end();
 
             }
