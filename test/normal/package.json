@@ -1,0 +1,13 @@
+{
+  "name": "normal-test",
+  "version": "0.1.0",
+  "description": "无框架测试",
+  "scripts": {
+    "build": "node ../../bin/builder --config etcpack.prod.js",
+    "dev": "node ../../bin/server --config etcpack.dev.js",
+    "debug": "echo 'chrome://inspect/#devices' && node --inspect-brk ../../bin/builder --config etcpack.prod.js"
+  },
+  "dependencies": {
+    "@hai2007/algorithm": "^0.7.3"
+  }
+}

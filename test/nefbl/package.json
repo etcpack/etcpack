@@ -1,0 +1,27 @@
+{
+  "name": "nefbl-test",
+  "version": "0.1.0",
+  "description": "Nefbl框架测试",
+  "scripts": {
+    "build": "node ../../bin/builder --config etcpack.prod.js",
+    "dev": "node ../../bin/server --config etcpack.dev.js",
+    "debug": "echo 'chrome://inspect/#devices' && node --inspect-brk ../../bin/builder --config etcpack.prod.js"
+  },
+  "dependencies": {
+    "@hai2007/polyfill": "^0.2.0",
+    "@hai2007/style": "^0.3.0",
+    "nefbl": "^0.2.6",
+    "sprout-ui": "^0.2.1"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.0.0",
+    "@babel/plugin-proposal-class-properties": "^7.16.0",
+    "@babel/plugin-proposal-decorators": "^7.16.4",
+    "@babel/plugin-proposal-object-rest-spread": "^7.16.0",
+    "@babel/preset-env": "^7.0.0",
+    "@babel/preset-typescript": "^7.16.0",
+    "@etcpack/plain-loader": "^0.1.0",
+    "@etcpack/scss-loader": "^0.1.2",
+    "tslib": "^2.3.1"
+  }
+}
