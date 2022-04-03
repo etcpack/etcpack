@@ -6,7 +6,9 @@ const fs = require('fs');
 
 module.exports = function (config) {
 
-    config.context = process.cwd();
+    if (!("context" in config)) {
+        config.context = process.cwd();
+    }
 
     // 地址重定向
     config.redirect = config.redirect || {};

@@ -103,7 +103,7 @@ module.exports = function analyseBundle(filepath, config) {
             });
         }
 
-        let lazyfilename = lazyOutput.replace(config.context, '.').replace(/\\/g, '/');
+        let lazyfilename = lazyOutput.replace(config.context, './').replace(/\\/g, '/').replace(/\/\//g,'/');
 
         // 原生的导入语句改成内部可以支持的写法
         source = source.replace(lazyStatement[0], `window.__etcpack__getLazyBundle('${lazyfilename}','${urlToIndex(lazyFilepath)}')`);
@@ -112,7 +112,7 @@ module.exports = function analyseBundle(filepath, config) {
     return {
         code: `
 /*************************** [bundle] ****************************/
-// Original file:${filepath.replace(config.context, '.').replace(/\\/g, '/')}
+// Original file:${filepath.replace(config.context, './').replace(/\\/g, '/').replace(/\/\//g,'/')}
 /*****************************************************************/
 window.__etcpack__bundleSrc__['${urlToIndex(filepath)}']=function(){
     var __etcpack__scope_bundle__={};
