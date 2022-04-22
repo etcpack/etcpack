@@ -77,8 +77,14 @@ module.exports = function analyseBundle(filepath, config) {
         // 获取导出语句的信息
         let exportResult = analyseExport(exportStatement);
 
-        // 原生的导入语句改成内部可以支持的写法
-        source = source.replace(exportStatement, exportResult);
+        // 原生的导出语句改成内部可以支持的写法
+        // source = source.replace(exportStatement, exportResult);
+        // 修复bug https://github.com/etcpack/etcpack/issues/3
+        // 2022年4月21日 南京 by 你好2007
+        source = source.replace(/\$\$/g,'-special-code-1-').replace(exportStatement.replace(/\$\$/g,'-special-code-1-'), exportResult.replace(/\$\$/g,'-special-code-1-'));
+
+        // 恢复
+        source=source.replace(/\-special\-code\-1\-/g,'$$$$')
     }
 
     // 【3】懒加载
