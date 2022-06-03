@@ -71,3 +71,7 @@ v0.10.0
     date:2022-04-21
     changes:
       -  修复bug: https://github.com/etcpack/etcpack/issues/3
+v0.11.0
+    date:2022-06-02
+    changes:
+      -  解决loader解析失败导致服务器奔溃问题

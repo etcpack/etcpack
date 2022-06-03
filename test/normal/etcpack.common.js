@@ -26,6 +26,7 @@ module.exports = {
         test: /\.myfile\?xxxxxx$/,
         filter(filepath) {
             console.log(filepath);
+            throw new Error('error~');
             return false;
         },
         handler: [{
