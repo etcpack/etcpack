@@ -41,6 +41,11 @@ module.exports = function (_config) {
                     content = content.replace('__port__', config.devServer.port + 1);
                 }
 
+            } else if (/\/@file/.test(request.url)) {
+
+                let fixedFilePath = request.url.replace(/\/@file/, '');
+                content = fs.readFileSync(fixedFilePath, 'utf-8');
+
             } else {
 
                 // 如果是导入node_modules的

@@ -1,6 +1,6 @@
 {
     "name": "etcpack",
-    "version": "0.11.0",
+    "version": "0.13.0",
     "description": "为前端开发设计的轻量级打包工具。",
     "main": "index.js",
     "bin": {
